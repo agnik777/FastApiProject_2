@@ -10,7 +10,6 @@ async def lifespan(app: FastAPI):
     print("Starting up...")
     async with engine.begin() as conn:
         # Создаём все таблицы
-        await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
     yield
     # Код ПОСЛЕ yield выполнится при остановке приложения
